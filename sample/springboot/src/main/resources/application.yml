@@ -1,0 +1,23 @@
+spring:
+  datasource:
+    url: jdbc:snowflake://${SNOWFLAKE_TEST_ACCOUNT}.snowflakecomputing.com?database=${SNOWFLAKE_TEST_DATABASE}&schema=${SNOWFLAKE_TEST_SCHEMA}&warehouse=${SNOWFLAKE_TEST_WAREHOUSE}&role=${SNOWFLAKE_TEST_ROLE}
+    driverClassName: net.snowflake.client.jdbc.SnowflakeDriver
+    username: ${SNOWFLAKE_TEST_USER}
+    password: ${SNOWFLAKE_TEST_PASSWORD}
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: net.snowflake.hibernate.dialect.SnowflakeDialect
+        format_sql: true
+        dialect.snowflake.table_type: HYBRID
+        dialect.snowflake.development_mode: true
+    hibernate:
+      ddl-auto: create
+logging:
+  level:
+    org:
+      hibernate:
+        orm:
+          jdbc:
+            bind: trace

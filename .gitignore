@@ -1,0 +1,101 @@
+target
+
+.idea
+
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# BlueJ files
+*.ctxt
+
+# Mobile Tools for Java (J2ME)
+.mtj.tmp/
+
+# Package Files #
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
+hs_err_pid*
+replay_pid*
+
+dist
+.DS_STORE
+
+# Spring Boot sample
+sample/springboot/HELP.MD
+sample/springboot/target/
+sample/springboot/!.mvn/wrapper/maven-wrapper.jar
+sample/springboot/!**/src/main/**/target/
+sample/springboot/!**/src/test/**/target/
+sample/springboot/
+sample/springboot/### STS ###
+sample/springboot/.apt_generated
+sample/springboot/.classpath
+sample/springboot/.factorypath
+sample/springboot/.project
+sample/springboot/.settings
+sample/springboot/.springBeans
+sample/springboot/.sts4-cache
+
+### IntelliJ IDEA ###
+sample/springboot/.idea
+sample/springboot/*.iws
+sample/springboot/*.iml
+sample/springboot/*.ipr
+
+### NetBeans ###
+sample/springboot/nbproject/private/
+sample/springboot/nbbuild/
+sample/springboot/dist/
+sample/springboot/nbdist/
+sample/springboot/.nb-gradle/
+sample/springboot/build/
+sample/springboot/!**/src/main/**/build/
+sample/springboot/!**/src/test/**/build/
+
+### VS Code ###
+sample/springboot/.vscode/
+
+# Spring Boot Flyway sample
+sample/springboot-flyway/HELP.MD
+sample/springboot-flyway/target/
+sample/springboot-flyway/!.mvn/wrapper/maven-wrapper.jar
+sample/springboot-flyway/!**/src/main/**/target/
+sample/springboot-flyway/!**/src/test/**/target/
+
+### STS ###
+sample/springboot-flyway/.apt_generated
+sample/springboot-flyway/.classpath
+sample/springboot-flyway/.factorypath
+sample/springboot-flyway/.project
+sample/springboot-flyway/.settings
+sample/springboot-flyway/.springBeans
+sample/springboot-flyway/.sts4-cache
+
+### IntelliJ IDEA ###
+sample/springboot-flyway/.idea
+sample/springboot-flyway/*.iws
+sample/springboot-flyway/*.iml
+sample/springboot-flyway/*.ipr
+
+### NetBeans ###
+sample/springboot-flyway/nbproject/private/
+sample/springboot-flyway/nbbuild/
+sample/springboot-flyway/dist/
+sample/springboot-flyway/nbdist/
+sample/springboot-flyway/.nb-gradle/
+sample/springboot-flyway/build/
+sample/springboot-flyway/!**/src/main/**/build/
+sample/springboot-flyway/!**/src/test/**/build/
+
+### VS Code ###
+sample/springboot-flyway/.vscode/

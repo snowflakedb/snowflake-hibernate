@@ -1,0 +1,104 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>net.snowflake</groupId>
+    <artifactId>snowflake-hibernate-parent</artifactId>
+    <version>0.0.2-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>snowflake-hibernate</module>
+    </modules>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <hibernate-core.version>6.4.4.Final</hibernate-core.version>
+        <junit-jupiter-engine.version>5.10.2</junit-jupiter-engine.version>
+        <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
+        <log4j-slf4j2-impl.version>2.23.0</log4j-slf4j2-impl.version>
+        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <slf4j-api.version>2.0.12</slf4j-api.version>
+        <snowflake-jdbc.version>3.15.1</snowflake-jdbc.version>
+
+        <testGroups>HYBRID,STANDARD,UNIT</testGroups>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>net.snowflake</groupId>
+                <artifactId>snowflake-jdbc</artifactId>
+                <version>${snowflake-jdbc.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>net.snowflake</groupId>
+                <artifactId>snowflake-jdbc-thin</artifactId>
+                <version>${snowflake-jdbc.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>${hibernate-core.version}</version>
+                <scope>provided</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-api</artifactId>
+                <version>${slf4j-api.version}</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.logging.log4j</groupId>
+                <artifactId>log4j-slf4j2-impl</artifactId>
+                <version>${log4j-slf4j2-impl.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-engine</artifactId>
+                <version>${junit-jupiter-engine.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter-params</artifactId>
+                <version>${junit-jupiter-params.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.hibernate.orm</groupId>
+                <artifactId>hibernate-hikaricp</artifactId>
+                <version>${hibernate-core.version}</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+                <configuration>
+                    <groups>${testGroups}</groups>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <profiles>
+        <profile>
+            <id>perf</id>
+            <properties>
+                <testGroups>PERF</testGroups>
+            </properties>
+        </profile>
+    </profiles>
+</project>

@@ -1,0 +1,11 @@
+point_of_contact: @snowflakedb/snow-drivers-warsaw
+production: true
+distributed: true
+modified: false
+release_branches:
+  - main
+  - release.*
+code_owners_file_present: true
+jira_project_issue_type: Bug
+jira_area: "Developer Platform"
+audit_in_scope: false

@@ -1,0 +1,35 @@
+<Configuration name="ConfigTest" status="ERROR" monitorInterval="5">
+    <Appenders>
+        <Console name="Out">
+            <PatternLayout pattern="[%d{HH:mm:ss.SSS}] [%-5level] [%logger{20}.%M\(%line\)] - %msg %n"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="net.snowflake.hibernate.dialect" level="TRACE" additivity="false">
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Logger name="org.hibernate.SQL" level="TRACE" additivity="false">
+            <!-- Set level to TRACE to see executed SQLs -->
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Logger name="org.hibernate.orm.jdbc.bind" level="OFF" additivity="false">
+            <!-- Set level to TRACE to see bind parameters -->
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Logger name="org.hibernate.orm.jdbc.extract" level="OFF" additivity="false">
+            <!-- Set level to TRACE to see selected values -->
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Logger name="org.hibernate.type" level="OFF" additivity="false">
+            <!-- Set level to TRACE to see hibernate types mapping definition -->
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Logger name="org.hibernate.engine.internal.StatisticalLoggingSessionEventListener" level="OFF">
+            <!-- Set level to DEBUG to see DML statistics -->
+            <AppenderRef ref="Out"/>
+        </Logger>
+        <Root level="WARN">
+            <AppenderRef ref="Out"/>
+        </Root>
+    </Loggers>
+</Configuration>
