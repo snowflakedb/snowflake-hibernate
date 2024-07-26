@@ -1,8 +1,76 @@
-# snowflake-hibernate
+# Snowflake-Hibernate
+
+## Brief
+
+This project is an SQL dialect definition for Hibernate Core enabling Java developers to reuse ORM features with Snowflake database.
 
 ## Hibernate Core Guides
 
+For extensive Hibernate Core documentation refer this project page:
 https://hibernate.org/orm/documentation/6.4/
+
+## Snowflake-Hibernate specific usage guidelines 
+
+### Dependencies
+
+Ensure to add in your project necessary minimal dependencies:
+  * Hibernate Core 6.4.x
+  * Snowflake JDBC Driver 3.13.31+
+
+### Features
+  
+| *Feature*           | *Snowflake-Hibernate Dialect Switch*                        | Values                   |            
+|---------------------|-------------------------------------------------------------|--------------------------|
+| JDBC Driver Version | hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver | false(default)/true      |  
+| Table Type          | hibernate.dialect.snowflake.table_type                      | HYBRID(default)/STANDARD |
+| Logging             | hibernate.dialect.snowflake.development_mode                | false(default)/true      |
+
+#### JDBC Driver Version 
+
+| Always use latest driver version and look for updates |
+|-------------------------------------------------------|
+
+Recommended lowest Snowflake driver version:
+https://mvnrepository.com/artifact/net.snowflake/snowflake-jdbc/3.13.31
+* version is free from vulnerabilities
+* supports ORM-specific required features necessary for OLTP operations: [HTAP](https://www.snowflake.com/guides/htap-hybrid-transactional-and-analytical-processing/)
+
+If for any reason you are forced to use unrecommended, non-latest version of the driver it might not work properly and if a version is 
+lower than the lowest recommended you'll notice an exception:
+`Using driver in version X.YY.ZZ must be forced - recommended driver version should be at least 3.13.31`
+To force using such a version you need to toggle the switch `hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver=true`.
+
+#### Table Type
+
+| Reuse HTAP tables for better performance and OLTP-features |
+|------------------------------------------------------------|
+
+ORM solutions are supposed to work on tables enforcing unique and foreign keys thus using it along with 
+[HTAP](https://www.snowflake.com/guides/htap-hybrid-transactional-and-analytical-processing/)-ready tables is necessary.
+In some cases you may need to force using STANDARD tables with a Snowflake-Hibernate dialect switch:
+`hibernate.dialect.snowflake.table_type=STANDARD`
+This may however cause multiple issues with some queries execution or in some cases result in data corruption or uniqueness/foreign keys issues.
+Experienced developers might still want to use this project on OLAP (STANDARD) tables within OLTP projects.  
+
+You can learn about differences between the above two kinds of tables here: https://docs.snowflake.com/en/user-guide/tables-hybrid
+Although Hybrid tables are a perfect choice for your OLTP, ORM-ready solutions they have some limitations:
+https://docs.snowflake.com/en/user-guide/tables-hybrid-limitations
+
+### Logging
+
+| Do not enable logging bindings on productions environment. |
+|------------------------------------------------------------| 
+
+For debug purposes you may want to use extensive logging using hibernate switches: `org.hibernate.orm.jdbc.bind` or `org.hibernate.orm.jdbc.extract`. 
+Be aware that those kind of logs may disclose user names, passwords and other secrets within your application domain and your executed query requests. 
+
+If you turn on the above logging you must ensure that development_mode is set:  
+`hibernate.dialect.snowflake.development_mode=true`
+Otherwise, you'll encounter below errors in the log:
+* `Statement parameter bindings logging is enabled - it's recommended to turn it off on production environment`
+* `Extracted in select data logging is enabled - it's recommended to turn it off on production environment`
+
+# Developer Guides
 
 ## Run tests
 
