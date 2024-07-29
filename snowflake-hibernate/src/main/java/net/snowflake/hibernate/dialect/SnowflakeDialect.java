@@ -26,7 +26,7 @@ public class SnowflakeDialect extends Dialect {
     private final static String CONFIGURATION_PROPERTY_PREFIX = "hibernate.dialect.snowflake.";
     final static String CONFIGURATION_PROPERTY_TABLE_TYPE = CONFIGURATION_PROPERTY_PREFIX + "table_type";
     final static String CONFIGURATION_PROPERTY_DEVELOPMENT_MODE = CONFIGURATION_PROPERTY_PREFIX + "development_mode";
-    final static String ALLOW_UNRECOMMENDED_JDBC_DRIVER_VERSION = CONFIGURATION_PROPERTY_PREFIX + "hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver";
+    final static String ALLOW_UNRECOMMENDED_JDBC_DRIVER_VERSION = CONFIGURATION_PROPERTY_PREFIX + "allow_unrecommended_jdbc_driver";
     private static final String HIBERNATE_PARAMETER_BINDING_LOGGER = "org.hibernate.orm.jdbc.bind";
     private static final String HIBERNATE_EXTRACTED_VALUES_LOGGER = "org.hibernate.orm.jdbc.extract";
     private final TableType tableType;
@@ -45,20 +45,19 @@ public class SnowflakeDialect extends Dialect {
         tableType = TableType.valueOf((String) configurationValues.getOrDefault(CONFIGURATION_PROPERTY_TABLE_TYPE, TableType.HYBRID.name()));
         warnOnUsingNonHybridTables();
         warnOnPossibleSensitiveDataLoggingEnabled(configurationValues);
-        boolean allowUnrecommendedJdbcVersion = Boolean.parseBoolean((String) configurationValues.getOrDefault(ALLOW_UNRECOMMENDED_JDBC_DRIVER_VERSION, "false"));
-        warnOnUnsupportedDriverVersion(allowUnrecommendedJdbcVersion);
+        warnOnUnsupportedDriverVersion(configurationValues);
     }
 
-    private void warnOnUnsupportedDriverVersion(boolean allowUnrecommendedJdbcDriverVersion) {
+    private void warnOnUnsupportedDriverVersion(Map<String, Object> configurationValues) {
         // security risk mitigation
         // we cannot use info.getDriverMajorVersion() and info.getDriverMinorVersion() since there is no method for patch part of the version
         try {
+            boolean allowUnrecommendedJdbcDriver = Boolean.parseBoolean((String) configurationValues.getOrDefault(ALLOW_UNRECOMMENDED_JDBC_DRIVER_VERSION, "false"));
             Version driverVersion = Version.from(SnowflakeDriver.implementVersion);
-            log.info("Dialect property {} has value {}", ALLOW_UNRECOMMENDED_JDBC_DRIVER_VERSION, allowUnrecommendedJdbcDriverVersion);
-            log.info("JDBC Driver version {}", driverVersion);
+            log.debug("JDBC Driver version {}", driverVersion);
             if (MINIMAL_DRIVER_VERSION.compareTo(driverVersion) > 0) {
                 String errorMessage = String.format("Using driver in version %s is not recommended - driver version should be at least %s", driverVersion, MINIMAL_DRIVER_VERSION);
-                if (allowUnrecommendedJdbcDriverVersion) {
+                if (allowUnrecommendedJdbcDriver) {
                     log.warn(errorMessage);
                 } else {
                     log.error(errorMessage);
