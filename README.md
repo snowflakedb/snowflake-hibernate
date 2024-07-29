@@ -50,7 +50,7 @@ ORM solutions are supposed to work on tables enforcing unique and foreign keys t
 In some cases you may need to force using STANDARD tables with a Snowflake-Hibernate dialect switch:
 `hibernate.dialect.snowflake.table_type=STANDARD`
 This may however cause multiple issues with some queries execution or in some cases result in data corruption or uniqueness/foreign keys issues.
-Experienced developers might still want to use this project on OLAP (STANDARD) tables within OLTP projects.  
+Developers might still want to use this project on OLAP (STANDARD) tables within OLTP projects.  
 
 You can learn about differences between the above two kinds of tables here: https://docs.snowflake.com/en/user-guide/tables-hybrid
 Although Hybrid tables are a perfect choice for your OLTP, ORM-ready solutions they have some limitations:
