@@ -8,10 +8,8 @@ import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 import org.hibernate.dialect.unique.UniqueDelegate;
 import org.hibernate.engine.jdbc.dialect.spi.DialectResolutionInfo;
 import org.hibernate.mapping.Column;
-import org.hibernate.mapping.Index;
 import org.hibernate.sql.ast.SqlAstTranslatorFactory;
 import org.hibernate.sql.ast.spi.StandardSqlAstTranslatorFactory;
-import org.hibernate.tool.schema.spi.Exporter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
