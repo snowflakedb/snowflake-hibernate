@@ -33,12 +33,12 @@ Ensure to add in your project necessary minimal dependencies:
 Make sure to use latest, vulnerability-free JDBC driver version:  
 https://mvnrepository.com/artifact/net.snowflake/snowflake-jdbc
 and not older than 3.13.31 (initial version with ORM-specific required features 
-necessary for OLTP operations: [HTAP](https://www.snowflake.com/guides/htap-hybrid-transactional-and-analytical-processing/)
+necessary for OLTP operations: [HTAP](https://www.snowflake.com/guides/htap-hybrid-transactional-and-analytical-processing/).
 
 If for any reason you are forced to use unrecommended, non-latest version of the driver it might not work properly and if a version is 
 lower than the lowest recommended you'll notice an exception:
-`Using driver in version X.YY.ZZ must be forced - recommended driver version should be at least 3.13.31`
-To force using such a version you need to toggle the switch `hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver=true`.
+`Using driver in version X.YY.ZZ must be forced - recommended driver version should be at least 3.13.31`. 
+To force using such a version you need to toggle the switch: `hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver=true`.
 
 #### Table Type
 
@@ -48,8 +48,8 @@ To force using such a version you need to toggle the switch `hibernate.dialect.s
 ORM solutions are supposed to work on tables enforcing unique and foreign keys thus using it along with 
 [HTAP](https://www.snowflake.com/guides/htap-hybrid-transactional-and-analytical-processing/)-ready tables is necessary.
 In some cases you may need to force using STANDARD tables with a Snowflake-Hibernate dialect switch:
-`hibernate.dialect.snowflake.table_type=STANDARD`
-This may however cause multiple issues with some queries execution or in some cases result in data corruption or uniqueness/foreign keys issues.
+`hibernate.dialect.snowflake.table_type=STANDARD`.
+However, this may cause multiple issues with some queries execution or in some cases result in data corruption or uniqueness/foreign keys issues.
 Developers might still want to use this project on OLAP (STANDARD) tables within OLTP projects. You can read more about
 constraints and why STANDARD tables are not recommended to use with snowflake-hibernate here:
 https://docs.snowflake.com/en/sql-reference/constraints-overview#supported-constraint-types
@@ -57,6 +57,10 @@ https://docs.snowflake.com/en/sql-reference/constraints-overview#supported-const
 You can learn about differences between the above two kinds of tables here: https://docs.snowflake.com/en/user-guide/tables-hybrid
 Although Hybrid tables are a perfect choice for your OLTP, ORM-ready solutions they have some limitations:
 https://docs.snowflake.com/en/user-guide/tables-hybrid-limitations
+
+Make sure your Snowflake account is capable of using HTAP feature. Unless your account's cloud, region or VPS is HTAP ready
+your `create table` query will fail with a syntax error. More about availability of HTAP feature here:
+https://docs.snowflake.com/en/user-guide/tables-hybrid-limitations#limitations
 
 ### Logging
 
