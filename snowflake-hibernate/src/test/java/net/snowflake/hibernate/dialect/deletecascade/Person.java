@@ -12,23 +12,22 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "person_cascade")
 public class Person {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    String firstName;
-    String lastName;
+  String firstName;
+  String lastName;
 
-    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
-    @JoinColumn(name = "address_id")
-    Address address;
+  @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+  @JoinColumn(name = "address_id")
+  Address address;
 
-    public Person(String firstName, String lastName, Address address) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-    }
+  public Person(String firstName, String lastName, Address address) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+  }
 
-    public Person() {
-    }
+  public Person() {}
 }

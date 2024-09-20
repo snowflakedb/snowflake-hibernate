@@ -10,75 +10,73 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import java.util.UUID;
 
 @Entity
-@Table(name = "employee", indexes = {
-        @Index(columnList = "firstName,lastName")
-})
+@Table(
+    name = "employee",
+    indexes = {@Index(columnList = "firstName,lastName")})
 public class Employee {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    private String firstName;
-    private String lastName;
+  private String firstName;
+  private String lastName;
 
-    @OneToOne(cascade = CascadeType.PERSIST, optional = true)
-    private Address address;
+  @OneToOne(cascade = CascadeType.PERSIST, optional = true)
+  private Address address;
 
-    @ManyToOne
-    @JoinColumn(name = "company_id", nullable = false)
-    private Company company;
+  @ManyToOne
+  @JoinColumn(name = "company_id", nullable = false)
+  private Company company;
 
-    public Employee(String firstName, String lastName, Address address, Company company) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.address = address;
-        this.company = company;
-    }
+  public Employee(String firstName, String lastName, Address address, Company company) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.address = address;
+    this.company = company;
+  }
 
-    public Employee() {
-    }
+  public Employee() {}
 
-    public UUID getId() {
-        return id;
-    }
+  public UUID getId() {
+    return id;
+  }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+  public void setId(UUID id) {
+    this.id = id;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+  public String getFirstName() {
+    return firstName;
+  }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
+  public String getLastName() {
+    return lastName;
+  }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
 
-    public Address getAddress() {
-        return address;
-    }
+  public Address getAddress() {
+    return address;
+  }
 
-    public void setAddress(Address address) {
-        this.address = address;
-    }
+  public void setAddress(Address address) {
+    this.address = address;
+  }
 
-    public Company getCompany() {
-        return company;
-    }
+  public Company getCompany() {
+    return company;
+  }
 
-    public void setCompany(Company company) {
-        this.company = company;
-    }
+  public void setCompany(Company company) {
+    this.company = company;
+  }
 }

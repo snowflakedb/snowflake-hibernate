@@ -7,16 +7,14 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "entity_with_manually_set_pk")
 class EntityWithManuallySetPk {
-    @Id
-    String id;
+  @Id String id;
 
-    String name;
+  String name;
 
-    public EntityWithManuallySetPk(String id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+  public EntityWithManuallySetPk(String id, String name) {
+    this.id = id;
+    this.name = name;
+  }
 
-    public EntityWithManuallySetPk() {
-    }
+  public EntityWithManuallySetPk() {}
 }

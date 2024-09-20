@@ -9,32 +9,31 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "address")
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  private Long id;
 
-    private String addressLine;
+  private String addressLine;
 
-    public Address(String addressLine) {
-        this.addressLine = addressLine;
-    }
+  public Address(String addressLine) {
+    this.addressLine = addressLine;
+  }
 
-    public Address() {
-    }
+  public Address() {}
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+  public void setId(Long id) {
+    this.id = id;
+  }
 
-    public String getAddressLine() {
-        return addressLine;
-    }
+  public String getAddressLine() {
+    return addressLine;
+  }
 
-    public void setAddressLine(String addressLine) {
-        this.addressLine = addressLine;
-    }
+  public void setAddressLine(String addressLine) {
+    this.addressLine = addressLine;
+  }
 }

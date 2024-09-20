@@ -7,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-
 import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
@@ -15,46 +14,45 @@ import java.util.UUID;
 @Entity
 @Table(name = "company")
 public class Company {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  private UUID id;
 
-    private String name;
+  private String name;
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
-    private Set<Employee> employees = new HashSet<>();
+  @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
+  private Set<Employee> employees = new HashSet<>();
 
-    @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
-    private Set<Project> projects = new HashSet<>();
+  @OneToMany(mappedBy = "company", cascade = CascadeType.PERSIST)
+  private Set<Project> projects = new HashSet<>();
 
-    public Company(String name) {
-        this.name = name;
-    }
+  public Company(String name) {
+    this.name = name;
+  }
 
-    public Company() {
-    }
+  public Company() {}
 
-    public UUID getId() {
-        return id;
-    }
+  public UUID getId() {
+    return id;
+  }
 
-    public void setId(UUID id) {
-        this.id = id;
-    }
+  public void setId(UUID id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public Set<Employee> getEmployees() {
-        return employees;
-    }
+  public Set<Employee> getEmployees() {
+    return employees;
+  }
 
-    public Set<Project> getProjects() {
-        return projects;
-    }
+  public Set<Project> getProjects() {
+    return projects;
+  }
 }

@@ -5,27 +5,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import net.snowflake.hibernate.dialect.AbstractSimplePerson;
-
 import java.util.UUID;
+import net.snowflake.hibernate.dialect.AbstractSimplePerson;
 
 @Entity
 @Table(name = "simple_person_uuid_id")
 class SimplePersonUuidId extends AbstractSimplePerson<UUID> {
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Id
-    private UUID id;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Id
+  private UUID id;
 
-    public SimplePersonUuidId(UUID id, String firstName, String lastName) {
-        super(firstName, lastName);
-        this.id = id;
-    }
+  public SimplePersonUuidId(UUID id, String firstName, String lastName) {
+    super(firstName, lastName);
+    this.id = id;
+  }
 
-    public SimplePersonUuidId() {
-    }
+  public SimplePersonUuidId() {}
 
-    @Override
-    public UUID getId() {
-        return id;
-    }
+  @Override
+  public UUID getId() {
+    return id;
+  }
 }

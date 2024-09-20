@@ -9,16 +9,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "person_address")
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    Long id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  Long id;
 
-    String addressLine;
+  String addressLine;
 
-    public Address(String addressLine) {
-        this.addressLine = addressLine;
-    }
+  public Address(String addressLine) {
+    this.addressLine = addressLine;
+  }
 
-    public Address() {
-    }
+  public Address() {}
 }

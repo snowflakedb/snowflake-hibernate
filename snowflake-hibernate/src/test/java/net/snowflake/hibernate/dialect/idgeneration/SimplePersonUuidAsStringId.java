@@ -10,20 +10,19 @@ import net.snowflake.hibernate.dialect.AbstractSimplePerson;
 @Entity
 @Table(name = "simple_person_uuid_as_string_id")
 class SimplePersonUuidAsStringId extends AbstractSimplePerson<String> {
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Id
-    private String id;
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Id
+  private String id;
 
-    public SimplePersonUuidAsStringId(String id, String firstName, String lastName) {
-        super(firstName, lastName);
-        this.id = id;
-    }
+  public SimplePersonUuidAsStringId(String id, String firstName, String lastName) {
+    super(firstName, lastName);
+    this.id = id;
+  }
 
-    public SimplePersonUuidAsStringId() {
-    }
+  public SimplePersonUuidAsStringId() {}
 
-    @Override
-    public String getId() {
-        return id;
-    }
+  @Override
+  public String getId() {
+    return id;
+  }
 }

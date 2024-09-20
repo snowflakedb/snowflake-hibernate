@@ -13,30 +13,30 @@ import org.hibernate.id.enhanced.SequenceStyleGenerator;
 @Entity
 @Table(name = "simple_person_hilo_sequence_id")
 class SimplePersonHiLoSequenceId extends AbstractSimplePerson<Long> {
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "simple_person_hilo_sequenced-gen")
-    @GenericGenerator(
-            name = "simple_person_hilo_sequenced-gen",
-            type = SequenceStyleGenerator.class,
-            parameters = {
-                    @Parameter(name = "sequence_name", value = "simple_person_hilo_sequence"),
-                    @Parameter(name = "initial_value", value = "1"),
-                    @Parameter(name = "increment_size", value = "50"),
-                    @Parameter(name = "optimizer", value = "hilo")
-            }
-    )
-    @Id
-    private Long id;
+  @GeneratedValue(
+      strategy = GenerationType.SEQUENCE,
+      generator = "simple_person_hilo_sequenced-gen")
+  @GenericGenerator(
+      name = "simple_person_hilo_sequenced-gen",
+      type = SequenceStyleGenerator.class,
+      parameters = {
+        @Parameter(name = "sequence_name", value = "simple_person_hilo_sequence"),
+        @Parameter(name = "initial_value", value = "1"),
+        @Parameter(name = "increment_size", value = "50"),
+        @Parameter(name = "optimizer", value = "hilo")
+      })
+  @Id
+  private Long id;
 
-    public SimplePersonHiLoSequenceId(Long id, String firstName, String lastName) {
-        super(firstName, lastName);
-        this.id = id;
-    }
+  public SimplePersonHiLoSequenceId(Long id, String firstName, String lastName) {
+    super(firstName, lastName);
+    this.id = id;
+  }
 
-    public SimplePersonHiLoSequenceId() {
-    }
+  public SimplePersonHiLoSequenceId() {}
 
-    @Override
-    public Long getId() {
-        return id;
-    }
+  @Override
+  public Long getId() {
+    return id;
+  }
 }
