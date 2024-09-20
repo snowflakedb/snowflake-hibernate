@@ -1,0 +1,110 @@
+name: Build and Test
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+  pull_request:
+    branches:
+      - master
+      - prep-**
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        default: warning
+        description: "Log level"
+        required: true
+      tags:
+        description: "Test scenario tags"
+
+concurrency:
+  # older builds for the same pull request numer or branch should be cancelled
+  cancel-in-progress: true
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build
+        shell: bash
+        env:
+          WHITESOURCE_API_KEY: ${{ secrets.WHITESOURCE_API_KEY }}
+        run: ./ci/build.sh
+
+  test-windows:
+    needs: build
+    name: ${{ matrix.runConfig.cloud }} Windows java ${{ matrix.runConfig.javaVersion }}
+    runs-on: windows-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runConfig: [ {cloud: 'AWS', javaVersion: '8'}, {cloud: 'GCP', javaVersion: '11'}, {cloud: 'AZURE', javaVersion: '17'}, {cloud: 'AWS', javaVersion: '21'}]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.runConfig.javaVersion }}
+          distribution: 'temurin'
+          cache: maven
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
+          architecture: 'x64'
+      - name: Tests
+        shell: cmd
+        env:
+          PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
+          CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
+        run: ci\\test_windows.bat
+
+  test-mac:
+    needs: build
+    name: ${{ matrix.runConfig.cloud }} Mac java ${{ matrix.runConfig.javaVersion }}
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runConfig: [ {cloud: 'AWS', javaVersion: '8'}, {cloud: 'GCP', javaVersion: '11'}, {cloud: 'AZURE', javaVersion: '17'}, {cloud: 'AWS', javaVersion: '21'}]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          java-version: ${{ matrix.runConfig.javaVersion }}
+          distribution: 'temurin'
+          cache: maven
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.7'
+      - name: Install Homebrew Bash
+        shell: bash
+        run: brew install bash
+      - name: Tests
+        shell: bash
+        env:
+          PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
+          CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
+        run: /usr/local/bin/bash ./ci/test_mac.sh
+
+  test-linux:
+    needs: build
+    name: ${{ matrix.cloud }} Linux java on ${{ matrix.image }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        image: [ 'jdbc-centos7-openjdk8', 'jdbc-centos7-openjdk11', 'jdbc-centos7-openjdk17', 'jdbc-centos7-openjdk21' ]
+        cloud: [ 'AWS', 'AZURE', 'GCP' ]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tests
+        shell: bash
+        env:
+          PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
+          CLOUD_PROVIDER: ${{ matrix.cloud }}
+          TARGET_DOCKER_TEST_IMAGE: ${{ matrix.image }}
+        run: ./ci/test.sh
