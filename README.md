@@ -143,13 +143,13 @@ Run performance tests:
    
 #### Spring Boot samples
 
-1. Go to [sample/springboot](sample/springboot-hibernate) `cd ./sample/springboot`
+1. Go to [sample/springboot](sample/springboot) `cd ./sample/springboot`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
 
 #### Spring Boot with Flyway samples
 
-1. Go to [sample/springboot-flyway](sample/springboot-hibernate) `cd ./sample/springboot-flyway`
+1. Go to [sample/springboot-flyway](sample/springboot-flyway) `cd ./sample/springboot-flyway`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
 
