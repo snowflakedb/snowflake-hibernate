@@ -33,7 +33,7 @@ jobs:
       - name: Build
         shell: bash
         env:
-          WHITESOURCE_API_KEY: ${{ secrets.WHITESOURCE_API_KEY }}
+          WHITESOURCE_API_KEY: ${{ secrets.WHITESOURCE_ACTION_TOKEN }}
         run: ./ci/build.sh
 
   test-windows:
