@@ -78,6 +78,32 @@ Otherwise, you'll encounter below errors in the log:
 
 # Developer Guides
 
+## Development
+
+Run the maven command to check the coding style.
+
+```bash
+    mvn -P check-style validate
+```
+
+Follow the instruction if any error occurs or run this command to fix the formats.
+
+```bash
+    mvn com.spotify.fmt:fmt-maven-plugin:format
+```
+
+You may import the coding style from IntelliJ so that the coding style can be applied on IDE:
+
+- In the **File** -> **Settings/Plugins**, and install `google-java-format` plugin.
+- Enable `google-java-format` for the JDBC project.
+- In the source code window, select **Code** -> **Reformat** to apply the coding style.
+- Additionally configure IDE in **File** -> **Editor** -> **Code Style** -> **Java** to
+   - not use wildcard imports (tab **Imports**):
+      - **Use single class import**
+      - **Class count to use import with '*'** to 1000
+      - **Names count to use static import with '*'** to 1000
+   - always use braces in ``if/while/for/do..while`` in (tab **Wrapping and Braces**)
+
 ## Run tests
 
 Add database access configuration as snowflake properties
@@ -117,13 +143,13 @@ Run performance tests:
    
 #### Spring Boot samples
 
-1. Go to [sample/springboot](sample/springboot-hibernate) `cd ./sample/springboot`
+1. Go to [sample/springboot](sample/springboot) `cd ./sample/springboot`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
 
 #### Spring Boot with Flyway samples
 
-1. Go to [sample/springboot-flyway](sample/springboot-hibernate) `cd ./sample/springboot-flyway`
+1. Go to [sample/springboot-flyway](sample/springboot-flyway) `cd ./sample/springboot-flyway`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
 

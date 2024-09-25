@@ -10,19 +10,18 @@ import net.snowflake.hibernate.dialect.AbstractSimplePerson;
 @Entity
 @Table(name = "simple_person_auto_id")
 public class SimplePersonAutoId extends AbstractSimplePerson<Long> {
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Id
-    private Long id;
+  @GeneratedValue(strategy = GenerationType.AUTO)
+  @Id
+  private Long id;
 
-    public SimplePersonAutoId(Long id, String firstName, String lastName) {
-        super(firstName, lastName);
-        this.id = id;
-    }
+  public SimplePersonAutoId(Long id, String firstName, String lastName) {
+    super(firstName, lastName);
+    this.id = id;
+  }
 
-    public SimplePersonAutoId() {
-    }
+  public SimplePersonAutoId() {}
 
-    public Long getId() {
-        return id;
-    }
+  public Long getId() {
+    return id;
+  }
 }

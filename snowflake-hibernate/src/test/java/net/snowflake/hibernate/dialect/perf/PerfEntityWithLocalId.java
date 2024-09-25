@@ -9,13 +9,13 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "perf_entity_with_local_id")
 class PerfEntityWithLocalId extends AbstractPerfEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    public static PerfEntityWithLocalId sample() {
-        PerfEntityWithLocalId sample = new PerfEntityWithLocalId();
-        updateAllFields(sample);
-        return sample;
-    }
+  public static PerfEntityWithLocalId sample() {
+    PerfEntityWithLocalId sample = new PerfEntityWithLocalId();
+    updateAllFields(sample);
+    return sample;
+  }
 }

@@ -11,18 +11,20 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "child_entity_with_local_id_bi_directional_one_to_many")
 class ChildEntityWithLocalIdBiDirectionalOneToMany extends AbstractPerfEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    @ManyToOne
-    @JoinColumn(name = "parent_id")
-    PerfOneToManyBiDirectional parent;
+  @ManyToOne
+  @JoinColumn(name = "parent_id")
+  PerfOneToManyBiDirectional parent;
 
-    public static ChildEntityWithLocalIdBiDirectionalOneToMany sample(PerfOneToManyBiDirectional parent) {
-        ChildEntityWithLocalIdBiDirectionalOneToMany sample = new ChildEntityWithLocalIdBiDirectionalOneToMany();
-        updateAllFields(sample);
-        sample.parent = parent;
-        return sample;
-    }
+  public static ChildEntityWithLocalIdBiDirectionalOneToMany sample(
+      PerfOneToManyBiDirectional parent) {
+    ChildEntityWithLocalIdBiDirectionalOneToMany sample =
+        new ChildEntityWithLocalIdBiDirectionalOneToMany();
+    updateAllFields(sample);
+    sample.parent = parent;
+    return sample;
+  }
 }

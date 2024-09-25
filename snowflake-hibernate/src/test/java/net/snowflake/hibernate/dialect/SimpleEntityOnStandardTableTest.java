@@ -5,10 +5,10 @@ import org.junit.jupiter.api.Tag;
 
 @Tag(TestTags.STANDARD)
 public class SimpleEntityOnStandardTableTest extends SimpleEntityTest {
-    @BeforeAll
-    public static void setupClass() {
-        classes = SimpleEntityTest.mappedClasses;
-        tableType = TableType.STANDARD;
-        sessionFactory = initSessionFactory();
-    }
+  @BeforeAll
+  public static void setupClass() {
+    classes = SimpleEntityTest.mappedClasses;
+    tableType = TableType.STANDARD;
+    sessionFactory = initSessionFactory();
+  }
 }

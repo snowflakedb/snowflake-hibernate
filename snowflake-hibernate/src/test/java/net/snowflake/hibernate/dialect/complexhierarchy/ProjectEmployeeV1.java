@@ -10,51 +10,48 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "project_employee1")
 public class ProjectEmployeeV1 {
-    // Join column as a separate entity with explicit compound key
+  // Join column as a separate entity with explicit compound key
 
-    @EmbeddedId
-    private ProjectEmployeeKey projectEmployeeKey = new ProjectEmployeeKey();
+  @EmbeddedId private ProjectEmployeeKey projectEmployeeKey = new ProjectEmployeeKey();
 
-    @ManyToOne
-    @MapsId("employeeId")
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+  @ManyToOne
+  @MapsId("employeeId")
+  @JoinColumn(name = "employee_id")
+  private Employee employee;
 
-    @ManyToOne
-    @MapsId("projectId")
-    @JoinColumn(name = "project_id")
-    private Project project;
+  @ManyToOne
+  @MapsId("projectId")
+  @JoinColumn(name = "project_id")
+  private Project project;
 
-    public ProjectEmployeeKey getProjectEmployeeKey() {
-        return projectEmployeeKey;
-    }
+  public ProjectEmployeeKey getProjectEmployeeKey() {
+    return projectEmployeeKey;
+  }
 
-    public void setProjectEmployeeKey(ProjectEmployeeKey projectEmployeeKey) {
-        this.projectEmployeeKey = projectEmployeeKey;
-    }
+  public void setProjectEmployeeKey(ProjectEmployeeKey projectEmployeeKey) {
+    this.projectEmployeeKey = projectEmployeeKey;
+  }
 
-    public Employee getEmployee() {
-        return employee;
-    }
+  public Employee getEmployee() {
+    return employee;
+  }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+  public void setEmployee(Employee employee) {
+    this.employee = employee;
+  }
 
-    public Project getProject() {
-        return project;
-    }
+  public Project getProject() {
+    return project;
+  }
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
+  public void setProject(Project project) {
+    this.project = project;
+  }
 
-    public ProjectEmployeeV1(Employee employee, Project project) {
-        this.employee = employee;
-        this.project = project;
-    }
+  public ProjectEmployeeV1(Employee employee, Project project) {
+    this.employee = employee;
+    this.project = project;
+  }
 
-    public ProjectEmployeeV1() {
-    }
+  public ProjectEmployeeV1() {}
 }
-
