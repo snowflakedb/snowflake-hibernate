@@ -8,10 +8,10 @@ import org.junit.jupiter.api.Tag;
 @Tag(TestTags.STANDARD)
 public class ComplexHierarchyOnStandardTableTest extends ComplexHierarchyTest {
 
-    @BeforeAll
-    public static void setupClass() {
-        classes = ComplexHierarchyTest.mappedClasses;
-        tableType = TableType.STANDARD;
-        sessionFactory = initSessionFactory();
-    }
+  @BeforeAll
+  public static void setupClass() {
+    classes = ComplexHierarchyTest.mappedClasses;
+    tableType = TableType.STANDARD;
+    sessionFactory = initSessionFactory();
+  }
 }

@@ -11,40 +11,38 @@ import jakarta.persistence.Table;
 @Table(name = "project_employee3")
 @IdClass(ProjectEmployeeKeyJoin.class)
 public class ProjectEmployeeV3 {
-    // Alternative version where IdClass is used instead of embeddable id
+  // Alternative version where IdClass is used instead of embeddable id
 
-    @ManyToOne
-    @Id
-    @JoinColumn(name = "employee_id")
-    private Employee employee;
+  @ManyToOne
+  @Id
+  @JoinColumn(name = "employee_id")
+  private Employee employee;
 
-    @ManyToOne
-    @Id
-    @JoinColumn(name = "project_id")
-    private Project project;
+  @ManyToOne
+  @Id
+  @JoinColumn(name = "project_id")
+  private Project project;
 
-    public ProjectEmployeeV3(Employee employee, Project project) {
-        this.employee = employee;
-        this.project = project;
-    }
+  public ProjectEmployeeV3(Employee employee, Project project) {
+    this.employee = employee;
+    this.project = project;
+  }
 
-    public ProjectEmployeeV3() {
-    }
+  public ProjectEmployeeV3() {}
 
-    public Employee getEmployee() {
-        return employee;
-    }
+  public Employee getEmployee() {
+    return employee;
+  }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
+  public void setEmployee(Employee employee) {
+    this.employee = employee;
+  }
 
-    public Project getProject() {
-        return project;
-    }
+  public Project getProject() {
+    return project;
+  }
 
-    public void setProject(Project project) {
-        this.project = project;
-    }
+  public void setProject(Project project) {
+    this.project = project;
+  }
 }
-

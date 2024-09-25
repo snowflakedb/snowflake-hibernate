@@ -9,16 +9,15 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name = "person_address_cascade")
 public class Address {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    String addressLine;
+  String addressLine;
 
-    public Address(String addressLine) {
-        this.addressLine = addressLine;
-    }
+  public Address(String addressLine) {
+    this.addressLine = addressLine;
+  }
 
-    public Address() {
-    }
+  public Address() {}
 }

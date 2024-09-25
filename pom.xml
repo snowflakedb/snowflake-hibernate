@@ -22,6 +22,8 @@
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <slf4j-api.version>2.0.12</slf4j-api.version>
         <snowflake-jdbc.version>3.15.1</snowflake-jdbc.version>
+        <checkstyle.plugin.version>3.5.0</checkstyle.plugin.version>
+        <fmt.plugin.version>2.24</fmt.plugin.version>
 
         <testGroups>HYBRID,STANDARD,UNIT</testGroups>
     </properties>
@@ -90,6 +92,16 @@
                     <groups>${testGroups}</groups>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${checkstyle.plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify.fmt</groupId>
+                <artifactId>fmt-maven-plugin</artifactId>
+                <version>${fmt.plugin.version}</version>
+            </plugin>
         </plugins>
     </build>
 
@@ -99,6 +111,53 @@
             <properties>
                 <testGroups>PERF</testGroups>
             </properties>
+        </profile>
+        <profile>
+            <id>check-style</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.spotify.fmt</groupId>
+                        <artifactId>fmt-maven-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>fmt</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-checkstyle-plugin</artifactId>
+                        <configuration>
+                            <checkstyleRules>
+                                <module name="Checker">
+                                    <module name="TreeWalker">
+                                        <module name="AvoidStarImport"/>
+                                        <module name="NeedBraces"/>
+                                    </module>
+                                </module>
+                            </checkstyleRules>
+                            <consoleOutput>true</consoleOutput>
+                            <failsOnError>true</failsOnError>
+                            <includeTestSourceDirectory>true</includeTestSourceDirectory>
+                            <violationSeverity>warning</violationSeverity>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>checkstyle</id>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                                <phase>validate</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
         </profile>
     </profiles>
 </project>

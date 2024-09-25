@@ -8,25 +8,24 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-
 import java.util.UUID;
 
 @Entity
 @Table(name = "perf_one_to_one_bi_directional")
 class PerfOneToOneBiDirectional {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    String id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  String id;
 
-    String content;
+  String content;
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "parent", fetch = FetchType.EAGER)
-    ChildEntityWithLocalIdBiDirectionalOneToOne child;
+  @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "parent", fetch = FetchType.EAGER)
+  ChildEntityWithLocalIdBiDirectionalOneToOne child;
 
-    public static PerfOneToOneBiDirectional sample() {
-        PerfOneToOneBiDirectional sample = new PerfOneToOneBiDirectional();
-        sample.content = UUID.randomUUID().toString();
-        sample.child = ChildEntityWithLocalIdBiDirectionalOneToOne.sample(sample);
-        return sample;
-    }
+  public static PerfOneToOneBiDirectional sample() {
+    PerfOneToOneBiDirectional sample = new PerfOneToOneBiDirectional();
+    sample.content = UUID.randomUUID().toString();
+    sample.child = ChildEntityWithLocalIdBiDirectionalOneToOne.sample(sample);
+    return sample;
+  }
 }
