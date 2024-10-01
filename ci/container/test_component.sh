@@ -8,8 +8,7 @@ export WORKSPACE=${WORKSPACE:-/mnt/workspace}
 export SOURCE_ROOT=${SOURCE_ROOT:-/mnt/host}
 MVNW_EXE=$SOURCE_ROOT/mvnw
 
-echo "[INFO] Download Hibernate Integration test cases and libraries"
-source "$THIS_DIR/download_artifact.sh"
+echo "[INFO] Hibernate tests"
 
 if [[ -f "$WORKSPACE/parameters.json" ]]; then
     echo "[INFO] Found parameter file in $WORKSPACE"
@@ -50,20 +49,10 @@ if [[ "${ENABLE_CLIENT_LOG_ANALYZE}" == "true" ]]; then
 
     setup_log_env
 
-    if [[ "$SNOWFLAKE_TEST_HOST" == *"snowflake.reg"*".local"* && "$SNOWFLAKE_TEST_ACCOUNT" == "s3testaccount" && "$SNOWFLAKE_TEST_USER" == "snowman" && "$SNOWFLAKE_TEST_PASSWORD" == "test" ]]; then
-        echo "[INFO] Run test with local instance. Will set a more complex password"
-
-        python3 "$THIS_DIR/change_snowflake_test_pwd.py"
-        export SNOWFLAKE_TEST_PASSWORD=$SNOWFLAKE_TEST_PASSWORD_NEW
-
-        echo "$SNOWFLAKE_TEST_PASSWORD" >> "$CLIENT_KNOWN_SSM_FILE_PATH"
-    else
-        echo "[INFO] Not running test with local instance. Won't set a new password"
-    fi
+    echo "[INFO] Not running test with local instance. Won't set a new password"
 fi
 
 env | grep SNOWFLAKE_ | grep -v PASS | sort
-
 
 # Avoid connection timeouts
 export MAVEN_OPTS="$MAVEN_OPTS -Dhttp.keepAlive=false -Dmaven.wagon.http.pool=false -Dmaven.wagon.http.retryHandler.class=standard -Dmaven.wagon.http.retryHandler.count=3 -Dmaven.wagon.httpconnectionManager.ttlSeconds=120"

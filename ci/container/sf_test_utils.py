@@ -6,7 +6,7 @@ import os
 import sys
 
 def get_test_schema():
-    return os.getenv("TARGET_SCHEMA_NAME", "LOCAL_reg_1")
+    return os.getenv("TARGET_SCHEMA_NAME", "default_schema")
 
 
 def init_connection_params():

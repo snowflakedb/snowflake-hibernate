@@ -9,4 +9,3 @@ HIBERNATE_ROOT=$(cd "${THIS_DIR}/../../" && pwd)
 cd "$HIBERNATE_ROOT"
 rm -f lib/*.jar
 mvn clean install --batch-mode --show-version -DskipTests
-"$THIS_DIR"/upload_artifact.sh
