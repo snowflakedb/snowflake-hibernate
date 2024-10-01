@@ -67,4 +67,5 @@ $MVNW_EXE -Djava.io.tmpdir="$WORKSPACE" \
     -Djacoco.skip.instrument=false \
     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
     verify \
+    -DtestGroups="$TEST_GROUPS" \
     --batch-mode --show-version

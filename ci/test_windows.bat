@@ -59,9 +59,6 @@ echo "[INFO] CLIENT_KNOWN_SSM_FILE_PATH=%CLIENT_KNOWN_SSM_FILE_PATH%"
 REM To close log analyze, just set ENABLE_CLIENT_LOG_ANALYZE to not "true", e.g. "false".
 set ENABLE_CLIENT_LOG_ANALYZE=true
 
-REM The new complex password we use for jenkins test
-set SNOWFLAKE_TEST_PASSWORD_NEW="ThisIsRandomPassword123!"
-
 set LOG_PROPERTY_FILE=%GITHUB_WORKSPACE%\src\test\resources\logging.properties
 
 echo "[INFO] LOG_PROPERTY_FILE=%LOG_PROPERTY_FILE%"
@@ -98,11 +95,12 @@ echo "MAVEN OPTIONS %MAVEN_OPTS%"
 REM Avoid connection timeout on plugin dependency fetch or fail-fast when dependency cannot be fetched
 cmd /c %MVNW_EXE% --batch-mode --show-version dependency:go-offline
 
-echo "[INFO] Run Hibernate tests"
+echo [INFO] Run Hibernate tests
 cmd /c %MVNW_EXE% -B -Djava.io.tmpdir=%GITHUB_WORKSPACE% ^
     -Djacoco.skip.instrument=false ^
     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn ^
     verify ^
+    -DtestGroups=%TEST_GROUPS% ^
     --batch-mode --show-version > log.txt & type log.txt
 echo "[INFO] Check for test execution status"
 find /i /c "BUILD FAILURE" log.txt > NUL

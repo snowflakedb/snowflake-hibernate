@@ -1,6 +1,6 @@
 #!/bin/bash -e
 #
-# Test Hibernate for Mac
+# Test Hibernate for Linux/Mac
 #
 
 set -o pipefail

@@ -8,4 +8,4 @@ HIBERNATE_ROOT=$(cd "${THIS_DIR}/../../" && pwd)
 
 cd "$HIBERNATE_ROOT"
 rm -f lib/*.jar
-mvn clean install --batch-mode --show-version -DskipTests
+mvn clean install --batch-mode --show-version -DtestGroups=UNIT
