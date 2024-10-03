@@ -50,8 +50,8 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
           { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
@@ -87,8 +87,8 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
           { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
@@ -126,8 +126,8 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
           { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
