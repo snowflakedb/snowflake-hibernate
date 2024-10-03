@@ -20,7 +20,7 @@ on:
         description: "Test scenario tags"
 
 concurrency:
-  # older builds for the same pull request numer or branch should be cancelled
+  # older builds for the same pull request number or branch should be cancelled
   cancel-in-progress: true
   group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
 
@@ -45,7 +45,13 @@ jobs:
       matrix:
         runConfig: [
           { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
           { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
@@ -76,7 +82,13 @@ jobs:
       matrix:
         runConfig: [
           { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
           { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
@@ -108,9 +120,15 @@ jobs:
       fail-fast: false
       matrix:
         runConfig: [
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD'},
-          {cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD'},
-          {cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID'}
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
         ]
     steps:
       - uses: actions/checkout@v4
