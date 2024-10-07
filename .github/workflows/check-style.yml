@@ -3,7 +3,7 @@ name: Check Style
 on:
     pull_request:
         branches:
-            - master
+            - main
 jobs:
     check-style:
         name: Check Style
