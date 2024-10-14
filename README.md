@@ -152,7 +152,3 @@ Run performance tests:
 1. Go to [sample/springboot-flyway](sample/springboot-flyway) `cd ./sample/springboot-flyway`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
-
-## Prepare distribution for PrPr
-
-Run `./buildPrPrArtifact.sh`
