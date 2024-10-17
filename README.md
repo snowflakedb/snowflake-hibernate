@@ -138,7 +138,7 @@ Run performance tests:
 3. Build snowflake-hibernate `./mvnw clean package`
 4. Install snowflake-hibernate in private maven repo
    ```
-   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./snowflake-hibernate/target/snowflake-hibernate-*-SNAPSHOT.jar -DpomFile=./snowflake-hibernate-pom.xml
+   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./target/snowflake-hibernate.jar -DpomFile=./pom.xml
    ```
    
 #### Spring Boot samples
