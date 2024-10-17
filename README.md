@@ -138,7 +138,7 @@ Run performance tests:
 3. Build snowflake-hibernate `./mvnw clean package`
 4. Install snowflake-hibernate in private maven repo
    ```
-   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./snowflake-hibernate/target/snowflake-hibernate-*-SNAPSHOT.jar -DpomFile=./snowflake-hibernate-pom.xml
+   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./target/snowflake-hibernate.jar -DpomFile=./pom.xml
    ```
    
 #### Spring Boot samples
@@ -152,7 +152,3 @@ Run performance tests:
 1. Go to [sample/springboot-flyway](sample/springboot-flyway) `cd ./sample/springboot-flyway`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
-
-## Prepare distribution for PrPr
-
-Run `./buildPrPrArtifact.sh`
