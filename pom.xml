@@ -13,8 +13,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
+        <maven.compiler.release>11</maven.compiler.release>
         <fmt-maven-plugin.version>2.24</fmt-maven-plugin.version>
         <hibernate-core.version>6.4.4.Final</hibernate-core.version>
         <junit-jupiter-engine.version>5.10.2</junit-jupiter-engine.version>
