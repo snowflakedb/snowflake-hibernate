@@ -34,7 +34,7 @@ public class SnowflakeDialect extends Dialect {
   private final TableType tableType;
 
   /**
-   * Minimal version suppporting HTAP is 3.13.31 <a
+   * Minimal version suppporting HTAP is <a
    * href="https://docs.snowflake.com/en/release-notes/clients-drivers/jdbc-2023#version-3-13-31-may-25-2023">3.13.31</a>
    */
   private final Version MINIMAL_DRIVER_VERSION = Version.from("3.13.31");
