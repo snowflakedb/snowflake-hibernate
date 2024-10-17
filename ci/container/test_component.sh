@@ -62,10 +62,11 @@ cd "$SOURCE_ROOT"
 # Avoid connection timeout on plugin dependency fetch or fail-fast when dependency cannot be fetched
 $MVNW_EXE --batch-mode --show-version dependency:go-offline
 
-echo "[INFO] Run Hibernate tests"
+echo "[INFO] Run Hibernate tests on Snowflake JDBC v$JDBC_VERSION"
 $MVNW_EXE -Djava.io.tmpdir="$WORKSPACE" \
     -Djacoco.skip.instrument=false \
     -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=warn \
     verify \
     -DtestGroups="$TEST_GROUPS" \
+    -Dsnowflake-jdbc.version="$JDBC_VERSION" \
     --batch-mode --show-version

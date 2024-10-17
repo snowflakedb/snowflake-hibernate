@@ -38,21 +38,21 @@ jobs:
 
   test-windows:
     needs: build
-    name: ${{ matrix.runConfig.cloud }} Windows java ${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }}
+    name: ${{ matrix.runConfig.cloud }} Windows java${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }} Snowflake JDBC ${{ matrix.runConfig.jdbcVersion }}
     runs-on: windows-latest
     strategy:
       fail-fast: false
       matrix:
         runConfig: [
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.13.31' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.15.1' },
+          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
         ]
     steps:
       - uses: actions/checkout@v4
@@ -71,25 +71,26 @@ jobs:
           PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
+          JDBC_VERSION: ${{ matrix.runConfig.jdbcVersion }}
         run: ci\\test_windows.bat
 
   test-mac:
     needs: build
-    name: ${{ matrix.runConfig.cloud }} Mac java ${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }}
+    name: ${{ matrix.runConfig.cloud }} Mac java${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }} Snowflake JDBC ${{ matrix.runConfig.jdbcVersion }}
     runs-on: macos-latest
     strategy:
       fail-fast: false
       matrix:
         runConfig: [
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.13.31' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.15.1' },
+          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
         ]
     steps:
       - uses: actions/checkout@v4
@@ -110,25 +111,26 @@ jobs:
           PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
+          JDBC_VERSION: ${{ matrix.runConfig.jdbcVersion }}
         run: bash ./ci/test.sh
 
   test-linux:
     needs: build
-    name: ${{ matrix.runConfig.cloud }} Linux java ${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }}
+    name: ${{ matrix.runConfig.cloud }} Linux java${{ matrix.runConfig.javaVersion }} tests ${{ matrix.runConfig.testGroups }} Snowflake JDBC ${{ matrix.runConfig.jdbcVersion }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         runConfig: [
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD' },
-          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID' },
-          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID' }
+          { cloud: 'AWS', javaVersion: '11', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.13.31' },
+          { cloud: 'AWS', javaVersion: '17', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: '3.15.1' },
+          { cloud: 'AWS', javaVersion: '21', testGroups: 'UNIT,STANDARD,HYBRID', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
         ]
     steps:
       - uses: actions/checkout@v4
@@ -146,4 +148,5 @@ jobs:
           PARAMETERS_SECRET: ${{ secrets.PARAMETERS_SECRET }}
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
+          JDBC_VERSION: ${{ matrix.runConfig.jdbcVersion }}
         run: ./ci/test.sh
