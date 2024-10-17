@@ -35,7 +35,7 @@ public class SnowflakeDialect extends Dialect {
 
   /**
    * Minimal version suppporting HTAP is 3.13.31
-   * https://docs.snowflake.com/en/release-notes/clients-drivers/jdbc-2023#version-3-13-31-may-25-2023
+   * <a href="https://docs.snowflake.com/en/release-notes/clients-drivers/jdbc-2023#version-3-13-31-may-25-2023">3.13.31</a>
    */
   private final Version MINIMAL_DRIVER_VERSION = Version.from("3.13.31");
 
@@ -125,9 +125,7 @@ public class SnowflakeDialect extends Dialect {
       configurationValues.entrySet().stream()
           .filter(e -> e.getKey().startsWith(CONFIGURATION_PROPERTY_PREFIX))
           .forEach(
-              e -> {
-                log.trace("Dialect property {} has value {}", e.getKey(), e.getValue());
-              });
+              e -> log.trace("Dialect property {} has value {}", e.getKey(), e.getValue()));
     }
   }
 
@@ -170,19 +168,15 @@ public class SnowflakeDialect extends Dialect {
     // Base dialect by default does not add name of primary table when referencesPrimaryKey is true
     // Unistore allows creating foreign keys after creation but it should be disabled
 
-    final StringBuilder res = new StringBuilder();
-
-    res.append(" add constraint ")
-        .append(quote(constraintName))
-        .append(" foreign key (")
-        .append(String.join(", ", foreignKey))
-        .append(") references ")
-        .append(referencedTable)
-        .append(" (")
-        .append(String.join(", ", primaryKey))
-        .append(')');
-
-    return res.toString();
+      return " add constraint " +
+             quote(constraintName) +
+             " foreign key (" +
+             String.join(", ", foreignKey) +
+             ") references " +
+             referencedTable +
+             " (" +
+             String.join(", ", primaryKey) +
+             ')';
   }
 
   @Override
