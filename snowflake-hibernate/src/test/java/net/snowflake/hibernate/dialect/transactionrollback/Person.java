@@ -22,7 +22,7 @@ public class Person {
   String firstName;
   String lastName;
 
-  @OneToOne(cascade = CascadeType.PERSIST, optional = true)
+  @OneToOne(cascade = CascadeType.PERSIST)
   private Address address;
 
   public Person(String firstName, String lastName, Address address) {

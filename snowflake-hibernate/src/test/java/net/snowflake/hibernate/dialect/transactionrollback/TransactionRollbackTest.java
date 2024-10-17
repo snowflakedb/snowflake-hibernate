@@ -72,15 +72,11 @@ public class TransactionRollbackTest extends DroppingTablesBaseTest {
     EntityWithManuallySetPk entity2 = new EntityWithManuallySetPk(id, "test2");
 
     sessionFactory.inTransaction(
-        session -> {
-          session.persist(entity1);
-        });
+        session -> session.persist(entity1));
 
     try {
       sessionFactory.inTransaction(
-          session -> {
-            session.persist(entity2);
-          });
+          session -> session.persist(entity2));
     } catch (DataException e) {
       assertTrue(e.getMessage().contains("A primary key already exists."));
     }

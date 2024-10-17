@@ -46,18 +46,18 @@ public class PerfTest extends DroppingTablesBaseTest {
   public void clearTables() {
     sessionFactory.inTransaction(
         session -> {
-          session.createQuery("delete from PerfEntityWithLocalId").executeUpdate();
-          session.createQuery("delete from PerfEntityWithDbId ").executeUpdate();
-          session.createQuery("delete from PerfOneToManyUniDirectional ").executeUpdate();
-          session.createQuery("delete from PerfOneToOneUniDirectional ").executeUpdate();
+          session.createMutationQuery("delete from PerfEntityWithLocalId").executeUpdate();
+          session.createMutationQuery("delete from PerfEntityWithDbId ").executeUpdate();
+          session.createMutationQuery("delete from PerfOneToManyUniDirectional ").executeUpdate();
+          session.createMutationQuery("delete from PerfOneToOneUniDirectional ").executeUpdate();
           session
-              .createQuery("delete from ChildEntityWithLocalIdBiDirectionalOneToMany ")
+              .createMutationQuery("delete from ChildEntityWithLocalIdBiDirectionalOneToMany ")
               .executeUpdate();
           session
-              .createQuery("delete from ChildEntityWithLocalIdBiDirectionalOneToOne ")
+              .createMutationQuery("delete from ChildEntityWithLocalIdBiDirectionalOneToOne ")
               .executeUpdate();
-          session.createQuery("delete from PerfOneToManyBiDirectional ").executeUpdate();
-          session.createQuery("delete from PerfOneToOneBiDirectional ").executeUpdate();
+          session.createMutationQuery("delete from PerfOneToManyBiDirectional ").executeUpdate();
+          session.createMutationQuery("delete from PerfOneToOneBiDirectional ").executeUpdate();
         });
   }
 
@@ -83,9 +83,7 @@ public class PerfTest extends DroppingTablesBaseTest {
 
   private static void persistAll(List<?> entities) {
     sessionFactory.inTransaction(
-        session -> {
-          entities.forEach(session::persist);
-        });
+        session -> entities.forEach(session::persist));
   }
 
   @Nested
@@ -97,9 +95,7 @@ public class PerfTest extends DroppingTablesBaseTest {
       List<PerfEntityWithLocalId> entities = generateEntities(PerfEntityWithLocalId::sample, count);
       measureTime(
           "insertEntitiesWithLocalIds with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -108,9 +104,7 @@ public class PerfTest extends DroppingTablesBaseTest {
       List<PerfEntityWithDbId> entities = generateEntities(PerfEntityWithDbId::sample, count);
       measureTime(
           "insertEntitiesWithDbIds with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -122,14 +116,12 @@ public class PerfTest extends DroppingTablesBaseTest {
           pickRandomIds(entities, entity -> entity.id, tenPercentOfAll);
       measureTime(
           "selectAndUpdate10PercentOfEntitiesOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToChange.forEach(
-                id -> {
-                  PerfEntityWithLocalId entity = session.get(PerfEntityWithLocalId.class, id);
-                  PerfEntityWithLocalId.updateAllFields(entity);
-                  session.persist(entity);
-                });
-          });
+          session -> entityIdsToChange.forEach(
+              id -> {
+                PerfEntityWithLocalId entity = session.get(PerfEntityWithLocalId.class, id);
+                PerfEntityWithLocalId.updateAllFields(entity);
+                session.persist(entity);
+              }));
     }
 
     private List<PerfEntityWithLocalId> insertRandomPerfEntitiesWithLocalIds(int count) {
@@ -173,14 +165,12 @@ public class PerfTest extends DroppingTablesBaseTest {
           pickRandomIds(entities, entity -> entity.id, tenPercentOfAll);
       measureTime(
           "selectAndDelete10PercentOfEntitiesOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToChange.forEach(
-                id -> {
-                  PerfEntityWithLocalId entity = session.get(PerfEntityWithLocalId.class, id);
-                  assertNotNull(entity);
-                  session.remove(entity);
-                });
-          });
+          session -> entityIdsToChange.forEach(
+              id -> {
+                PerfEntityWithLocalId entity = session.get(PerfEntityWithLocalId.class, id);
+                assertNotNull(entity);
+                session.remove(entity);
+              }));
     }
 
     @ParameterizedTest
@@ -195,7 +185,7 @@ public class PerfTest extends DroppingTablesBaseTest {
           session -> {
             int deletedRows =
                 session
-                    .createQuery("delete from PerfEntityWithLocalId where id in (:ids)")
+                    .createMutationQuery("delete from PerfEntityWithLocalId where id in (:ids)")
                     .setParameter("ids", entityIdsToChange)
                     .executeUpdate();
             assertEquals(tenPercentOfAll, deletedRows);
@@ -211,12 +201,8 @@ public class PerfTest extends DroppingTablesBaseTest {
           pickRandomIds(entities, entity -> entity.id, tenPercentOfAll);
       measureTime(
           "select10PercentOfEntitiesOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToChange.forEach(
-                id -> {
-                  assertNotNull(session.get(PerfEntityWithLocalId.class, id));
-                });
-          });
+          session -> entityIdsToChange.forEach(
+              id -> assertNotNull(session.get(PerfEntityWithLocalId.class, id))));
     }
 
     @ParameterizedTest
@@ -252,9 +238,7 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "insertEntitiesWithOneToOneRelation with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -268,12 +252,8 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "select10PercentOfEntitiesWithOneToOneRelationOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToFind.forEach(
-                id -> {
-                  assertNotNull(session.get(PerfOneToOneUniDirectional.class, id));
-                });
-          });
+          session -> entityIdsToFind.forEach(
+              id -> assertNotNull(session.get(PerfOneToOneUniDirectional.class, id))));
     }
 
     @ParameterizedTest
@@ -307,9 +287,7 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "insertEntitiesWithOneToManyRelation with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -323,12 +301,8 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "select10PercentOfEntitiesWithOneToManyRelationOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToFind.forEach(
-                id -> {
-                  assertNotNull(session.get(PerfOneToManyUniDirectional.class, id));
-                });
-          });
+          session -> entityIdsToFind.forEach(
+              id -> assertNotNull(session.get(PerfOneToManyUniDirectional.class, id))));
     }
 
     @ParameterizedTest
@@ -366,9 +340,7 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "insertEntitiesWithOneToOneRelation with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -383,12 +355,8 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "select10PercentOfEntitiesWithOneToOneRelationOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToFind.forEach(
-                id -> {
-                  assertNotNull(session.get(PerfOneToOneBiDirectional.class, id));
-                });
-          });
+          session -> entityIdsToFind.forEach(
+              id -> assertNotNull(session.get(PerfOneToOneBiDirectional.class, id))));
     }
 
     @ParameterizedTest
@@ -423,9 +391,7 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "insertEntitiesWithOneToManyRelation with " + count + " entities",
-          session -> {
-            entities.forEach(session::persist);
-          });
+          session -> entities.forEach(session::persist));
     }
 
     @ParameterizedTest
@@ -439,12 +405,8 @@ public class PerfTest extends DroppingTablesBaseTest {
 
       measureTime(
           "select10PercentOfEntitiesWithOneToManyRelationOneByOne with " + count + " entities",
-          session -> {
-            entityIdsToFind.forEach(
-                id -> {
-                  assertNotNull(session.get(PerfOneToManyBiDirectional.class, id));
-                });
-          });
+          session -> entityIdsToFind.forEach(
+              id -> assertNotNull(session.get(PerfOneToManyBiDirectional.class, id))));
     }
 
     @ParameterizedTest

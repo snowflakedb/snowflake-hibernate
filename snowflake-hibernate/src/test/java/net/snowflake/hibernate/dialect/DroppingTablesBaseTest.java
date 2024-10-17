@@ -21,7 +21,7 @@ public abstract class DroppingTablesBaseTest {
   protected static SessionFactory sessionFactory;
 
   protected static String hbm2ddlMode = "create";
-  private static String driverConnectionString =
+  private static final String driverConnectionString =
       "jdbc:snowflake://"
           + System.getenv("SNOWFLAKE_TEST_ACCOUNT")
           + ".snowflakecomputing.com/?"
@@ -35,8 +35,8 @@ public abstract class DroppingTablesBaseTest {
           + System.getenv("SNOWFLAKE_TEST_SCHEMA")
           + "&warehouse="
           + System.getenv("SNOWFLAKE_TEST_WAREHOUSE");
-  private static String userName = System.getenv("SNOWFLAKE_TEST_USER");
-  private static String password = System.getenv("SNOWFLAKE_TEST_PASSWORD");
+  private static final String userName = System.getenv("SNOWFLAKE_TEST_USER");
+  private static final String password = System.getenv("SNOWFLAKE_TEST_PASSWORD");
 
   protected static SessionFactory initSessionFactory() {
     System.setProperty("net.snowflake.jdbc.loggerImpl", "net.snowflake.client.log.SLF4JLogger");

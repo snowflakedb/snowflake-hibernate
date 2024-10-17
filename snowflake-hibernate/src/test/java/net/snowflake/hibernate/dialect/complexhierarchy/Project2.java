@@ -22,7 +22,7 @@ public class Project2 {
 
   private String name;
 
-  @ManyToMany(cascade = CascadeType.ALL)
+  @ManyToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
   @JoinTable(
       name = "project_employee",
       joinColumns = @JoinColumn(name = "project_id", referencedColumnName = "id"),

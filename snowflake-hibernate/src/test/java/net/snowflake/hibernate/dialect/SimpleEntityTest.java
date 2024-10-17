@@ -58,10 +58,8 @@ public class SimpleEntityTest extends DroppingTablesBaseTest {
         });
 
     sessionFactory.inTransaction(
-        session -> {
-          assertEquals(
-              new SimplePerson(5L, "Bob", "Kowalski"), session.get(SimplePerson.class, 5L));
-        });
+        session -> assertEquals(
+            new SimplePerson(5L, "Bob", "Kowalski"), session.get(SimplePerson.class, 5L)));
 
     sessionFactory.inTransaction(
         session -> {
@@ -134,9 +132,7 @@ public class SimpleEntityTest extends DroppingTablesBaseTest {
     SimplePersonAutoId person1 =
         new SimplePersonAutoId(null, UUID.randomUUID().toString().toUpperCase(), "Doe");
     sessionFactory.inTransaction(
-        session -> {
-          session.persist(person1);
-        });
+        session -> session.persist(person1));
 
     sessionFactory.inSession(
         session -> {

@@ -2,7 +2,7 @@ package net.snowflake.hibernate.dialect.keywords;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import net.snowflake.hibernate.dialect.DroppingTablesBaseTest;
 import net.snowflake.hibernate.dialect.TestTags;
@@ -15,7 +15,7 @@ public class KeywordsTest extends DroppingTablesBaseTest {
   // This class does not use Hybrid table specific features - there is no need to test this class
   // also with standard tables
 
-  private static final List<Class<?>> mappedClasses = Arrays.asList(KeywordEntity.class);
+  private static final List<Class<?>> mappedClasses = Collections.singletonList(KeywordEntity.class);
 
   @BeforeAll
   public static void setupClass() {
@@ -28,8 +28,6 @@ public class KeywordsTest extends DroppingTablesBaseTest {
     KeywordEntity entity = new KeywordEntity();
     sessionFactory.inTransaction(session -> session.persist(entity));
     sessionFactory.inTransaction(
-        session -> {
-          assertNotNull(session.get(KeywordEntity.class, entity.getId()));
-        });
+        session -> assertNotNull(session.get(KeywordEntity.class, entity.getId())));
   }
 }

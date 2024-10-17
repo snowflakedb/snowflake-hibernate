@@ -24,7 +24,7 @@ public class Employee {
   private String firstName;
   private String lastName;
 
-  @OneToOne(cascade = CascadeType.PERSIST, optional = true)
+  @OneToOne(cascade = CascadeType.PERSIST)
   private Address address;
 
   @ManyToOne
