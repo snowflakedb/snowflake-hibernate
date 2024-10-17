@@ -15,7 +15,8 @@ public class KeywordsTest extends DroppingTablesBaseTest {
   // This class does not use Hybrid table specific features - there is no need to test this class
   // also with standard tables
 
-  private static final List<Class<?>> mappedClasses = Collections.singletonList(KeywordEntity.class);
+  private static final List<Class<?>> mappedClasses =
+      Collections.singletonList(KeywordEntity.class);
 
   @BeforeAll
   public static void setupClass() {

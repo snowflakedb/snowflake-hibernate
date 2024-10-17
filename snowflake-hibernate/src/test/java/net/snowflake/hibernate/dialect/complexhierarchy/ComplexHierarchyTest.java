@@ -75,10 +75,10 @@ public class ComplexHierarchyTest extends DroppingTablesBaseTest {
     sessionFactory.inTransaction(
         session -> {
           Employee employee =
-                  session
-                      .createSelectionQuery("from Employee where id = :id", Employee.class)
-                      .setParameter("id", employee1.getId())
-                      .getSingleResultOrNull();
+              session
+                  .createSelectionQuery("from Employee where id = :id", Employee.class)
+                  .setParameter("id", employee1.getId())
+                  .getSingleResultOrNull();
           assertEquals(3, employee.getCompany().getProjects().size());
         });
 
@@ -95,18 +95,23 @@ public class ComplexHierarchyTest extends DroppingTablesBaseTest {
         session -> {
           assertNotNull(
               session
-                  .createSelectionQuery("from ProjectEmployeeV1 where projectEmployeeKey = ?1", ProjectEmployeeV1.class)
+                  .createSelectionQuery(
+                      "from ProjectEmployeeV1 where projectEmployeeKey = ?1",
+                      ProjectEmployeeV1.class)
                   .setParameter(1, new ProjectEmployeeKey(project1.getId(), employee1.getId()))
                   .getSingleResultOrNull());
           assertNotNull(
               session
-                  .createSelectionQuery("from ProjectEmployeeV2 where employee.id = ?1 and project.id = ?2", ProjectEmployeeV2.class)
+                  .createSelectionQuery(
+                      "from ProjectEmployeeV2 where employee.id = ?1 and project.id = ?2",
+                      ProjectEmployeeV2.class)
                   .setParameter(1, employee1.getId())
                   .setParameter(2, project1.getId())
                   .getSingleResultOrNull());
           assertNotNull(
               session
-                  .createSelectionQuery("from ProjectEmployeeV3 where id = ?1", ProjectEmployeeV3.class)
+                  .createSelectionQuery(
+                      "from ProjectEmployeeV3 where id = ?1", ProjectEmployeeV3.class)
                   .setParameter(1, new ProjectEmployeeKeyJoin(project1, employee1))
                   .getSingleResultOrNull());
         });
@@ -114,27 +119,30 @@ public class ComplexHierarchyTest extends DroppingTablesBaseTest {
     sessionFactory.inTransaction(
         session -> {
           String projectName1 =
-                  session
-                      .createSelectionQuery(
-                          "SELECT pev.project.name from ProjectEmployeeV1 pev inner join pev.employee.address a where a.addressLine = ?1", String.class)
-                      .setParameter(1, employee1.getAddress().getAddressLine())
-                      .getSingleResultOrNull();
+              session
+                  .createSelectionQuery(
+                      "SELECT pev.project.name from ProjectEmployeeV1 pev inner join pev.employee.address a where a.addressLine = ?1",
+                      String.class)
+                  .setParameter(1, employee1.getAddress().getAddressLine())
+                  .getSingleResultOrNull();
           assertEquals(project1.getName(), projectName1);
 
           String projectName2 =
-                  session
-                      .createSelectionQuery(
-                          "SELECT pev.project.name from ProjectEmployeeV2 pev inner join pev.employee.address a where a.addressLine = ?1", String.class)
-                      .setParameter(1, employee1.getAddress().getAddressLine())
-                      .getSingleResultOrNull();
+              session
+                  .createSelectionQuery(
+                      "SELECT pev.project.name from ProjectEmployeeV2 pev inner join pev.employee.address a where a.addressLine = ?1",
+                      String.class)
+                  .setParameter(1, employee1.getAddress().getAddressLine())
+                  .getSingleResultOrNull();
           assertEquals(project1.getName(), projectName2);
 
           String projectName3 =
-                  session
-                      .createSelectionQuery(
-                          "SELECT pev.project.name from ProjectEmployeeV3 pev inner join pev.employee.address a where a.addressLine = ?1", String.class)
-                      .setParameter(1, employee1.getAddress().getAddressLine())
-                      .getSingleResultOrNull();
+              session
+                  .createSelectionQuery(
+                      "SELECT pev.project.name from ProjectEmployeeV3 pev inner join pev.employee.address a where a.addressLine = ?1",
+                      String.class)
+                  .setParameter(1, employee1.getAddress().getAddressLine())
+                  .getSingleResultOrNull();
           assertEquals(project1.getName(), projectName3);
         });
   }
@@ -161,12 +169,15 @@ public class ComplexHierarchyTest extends DroppingTablesBaseTest {
     try (Session session = sessionFactory.openSession()) {
       assertNotNull(
           session
-              .createSelectionQuery("from ProjectEmployeeV1 where projectEmployeeKey = ?1", ProjectEmployeeV1.class)
+              .createSelectionQuery(
+                  "from ProjectEmployeeV1 where projectEmployeeKey = ?1", ProjectEmployeeV1.class)
               .setParameter(1, new ProjectEmployeeKey(project.getId(), employee.getId()))
               .getSingleResultOrNull());
       assertNotNull(
           session
-              .createSelectionQuery("from ProjectEmployeeV2 where employee.id = ?1 and project.id = ?2", ProjectEmployeeV2.class)
+              .createSelectionQuery(
+                  "from ProjectEmployeeV2 where employee.id = ?1 and project.id = ?2",
+                  ProjectEmployeeV2.class)
               .setParameter(1, employee.getId())
               .setParameter(2, project.getId())
               .getSingleResultOrNull());
