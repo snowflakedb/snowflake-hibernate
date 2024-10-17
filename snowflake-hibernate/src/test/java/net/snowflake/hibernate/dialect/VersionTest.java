@@ -24,7 +24,7 @@ class VersionTest {
   @ValueSource(strings = {"3.13.xx", "3.15", "3.15.1.23", "bla", "  "})
   @ParameterizedTest
   void shouldFailOnVersionCreation(String rawVersion) {
-    assertThrows(VersionParsingException.class, () -> Version.from("rawVersion"));
+    assertThrows(VersionParsingException.class, () -> Version.from(rawVersion));
   }
 
   @CsvSource(
