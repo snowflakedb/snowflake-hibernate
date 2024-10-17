@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 class Version implements Comparable<Version> {
-  private int major;
-  private int minor;
-  private int patch;
+  private final int major;
+  private final int minor;
+  private final int patch;
 
   static Version from(String rawVersion) {
     List<Integer> versionParts;

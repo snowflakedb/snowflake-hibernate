@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Embeddable
-class ProjectEmployeeKey implements Serializable {
+public class ProjectEmployeeKey implements Serializable {
 
   @Column(name = "project_id", nullable = false)
   UUID projectId;
