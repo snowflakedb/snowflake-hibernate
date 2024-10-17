@@ -19,9 +19,7 @@ import org.hibernate.sql.ast.spi.StandardSqlAstTranslatorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/**
- * Snowflake SQL Dialect.
- */
+/** Snowflake SQL Dialect. */
 public class SnowflakeDialect extends Dialect {
   private static final Logger log = LoggerFactory.getLogger(SnowflakeDialect.class);
 
@@ -44,6 +42,7 @@ public class SnowflakeDialect extends Dialect {
 
   /**
    * Constructor used to instantiate and configure the Dialect behavior.
+   *
    * @param info used to configure the behavior of the Dialect.
    */
   public SnowflakeDialect(DialectResolutionInfo info) {
@@ -239,8 +238,9 @@ public class SnowflakeDialect extends Dialect {
   }
 
   /**
-   * Default timestamp precision as in
-   * <a href="https://docs.snowflake.com/en/sql-reference/data-types-datetime#timestamp">Snowflake documentation</a>
+   * Default timestamp precision as in <a
+   * href="https://docs.snowflake.com/en/sql-reference/data-types-datetime#timestamp">Snowflake
+   * documentation</a>
    *
    * @return the default precision
    */
