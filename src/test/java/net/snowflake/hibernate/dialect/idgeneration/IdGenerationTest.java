@@ -69,7 +69,8 @@ public class IdGenerationTest extends DroppingTablesBaseTest {
         new SimplePersonHiLoSequenceId(null, "Alice", "Doe"));
   }
 
-  private <ID> void testSimplePersonAdding(AbstractSimplePerson<ID>... people) {
+  @SafeVarargs
+  private final <ID> void testSimplePersonAdding(AbstractSimplePerson<ID>... people) {
     AbstractSimplePerson<ID> person1 = people[0];
     AbstractSimplePerson<ID> person2 = people[1];
     sessionFactory.inTransaction(

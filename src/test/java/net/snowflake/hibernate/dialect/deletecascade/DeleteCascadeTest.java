@@ -40,10 +40,7 @@ public class DeleteCascadeTest extends DroppingTablesBaseTest {
     Address address = new Address(addressLine);
     Person person = new Person(personFirstName, "Doe", address);
 
-    sessionFactory.inTransaction(
-        session -> {
-          session.persist(person);
-        });
+    sessionFactory.inTransaction(session -> session.persist(person));
 
     sessionFactory.inSession(
         session -> {
