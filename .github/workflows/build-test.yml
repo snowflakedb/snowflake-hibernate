@@ -50,9 +50,9 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' }
         ]
     steps:
       - uses: actions/checkout@v4
@@ -88,9 +88,9 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' }
         ]
     steps:
       - uses: actions/checkout@v4
@@ -128,9 +128,9 @@ jobs:
           { cloud: 'AZURE', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
           { cloud: 'AZURE', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
           { cloud: 'AZURE', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
-          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' },
-          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' }
+          { cloud: 'GCP', javaVersion: '11', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.13.31' },
+          { cloud: 'GCP', javaVersion: '17', testGroups: 'UNIT,STANDARD', jdbcVersion: '3.15.1' },
+          { cloud: 'GCP', javaVersion: '21', testGroups: 'UNIT,STANDARD', jdbcVersion: 'LATEST' }
         ]
     steps:
       - uses: actions/checkout@v4
