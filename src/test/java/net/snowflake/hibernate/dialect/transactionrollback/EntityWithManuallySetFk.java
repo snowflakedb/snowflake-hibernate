@@ -1,5 +1,6 @@
 package net.snowflake.hibernate.dialect.transactionrollback;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
@@ -10,6 +11,7 @@ import jakarta.persistence.Table;
 class EntityWithManuallySetFk {
   @Id String id;
 
+  @Column(name = "`name`")
   String name;
 
   @OneToOne(mappedBy = "parent")
