@@ -1,4 +1,7 @@
-# snowflake-hibernate
+# Snowflake Dialect provider for Hibernate
+
+[<img src="https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml/badge.svg?branch=main">](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml?query=branch%3Amain)
+[<img src="http://img.shields.io/:license-Apache--2.0-brightgreen.svg">](http://www.apache.org/licenses/LICENSE-2.0.txt)
 
 ## Brief
 
@@ -18,7 +21,7 @@ Ensure to add in your project necessary minimal dependencies:
   * Snowflake JDBC Driver 3.13.31+
 
 ### Features
-  
+
 | *Feature*           | *snowflake-hibernate Dialect Switch*                        | *Values*        | *Default* |           
 |---------------------|-------------------------------------------------------------|-----------------|-----------|
 | JDBC Driver Version | hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver | false/true      | false     | 
