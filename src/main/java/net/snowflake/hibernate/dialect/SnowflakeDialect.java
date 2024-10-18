@@ -19,6 +19,7 @@ import org.hibernate.sql.ast.spi.StandardSqlAstTranslatorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/** Snowflake SQL Dialect. */
 public class SnowflakeDialect extends Dialect {
   private static final Logger log = LoggerFactory.getLogger(SnowflakeDialect.class);
 
@@ -39,6 +40,11 @@ public class SnowflakeDialect extends Dialect {
    */
   private final Version MINIMAL_DRIVER_VERSION = Version.from("3.13.31");
 
+  /**
+   * Constructor used to instantiate and configure the Dialect behavior.
+   *
+   * @param info used to configure the behavior of the Dialect.
+   */
   public SnowflakeDialect(DialectResolutionInfo info) {
     super(info);
     log.trace("Called SnowflakeDialect(DialectResolutionInfo)");
@@ -224,6 +230,13 @@ public class SnowflakeDialect extends Dialect {
     registerKeyword("gscluster");
   }
 
+  /**
+   * Default timestamp precision as in <a
+   * href="https://docs.snowflake.com/en/sql-reference/data-types-datetime#timestamp">Snowflake
+   * documentation</a>
+   *
+   * @return the default precision
+   */
   @Override
   public int getDefaultTimestampPrecision() {
     // Default timestamp precision as in Snowflake documentation
@@ -284,6 +297,11 @@ public class SnowflakeDialect extends Dialect {
     return "ILIKE";
   }
 
+  /**
+   * Get the configured {@link TableType} for current instance of the Dialect.
+   *
+   * @return the {@link TableType}
+   */
   public TableType getTableType() {
     return tableType;
   }
