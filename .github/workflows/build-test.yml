@@ -75,7 +75,6 @@ jobs:
       - uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
-          files: target\\jacoco-tests\\jacoco.xml
           token: ${{ secrets.CODECOV_TOKEN }}
 
   test-mac:
@@ -119,7 +118,6 @@ jobs:
       - uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
-          files: target/jacoco-tests/jacoco.xml
           token: ${{ secrets.CODECOV_TOKEN }}
 
   test-linux:
@@ -160,5 +158,4 @@ jobs:
       - uses: codecov/codecov-action@v4
         with:
           fail_ci_if_error: true
-          files: target/jacoco-tests/jacoco.xml
           token: ${{ secrets.CODECOV_TOKEN }}
