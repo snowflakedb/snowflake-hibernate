@@ -1,5 +1,7 @@
 # snowflake-hibernate
 
+[![codecov](https://codecov.io/gh/snowflakedb/snowflake-hibernate/graph/badge.svg?token=J8TOYZ6SZK)](https://codecov.io/gh/snowflakedb/snowflake-hibernate)
+
 ## Brief
 
 This project is an SQL dialect definition for Hibernate Core enabling Java developers to reuse ORM features with Snowflake database.
