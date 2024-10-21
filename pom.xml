@@ -37,6 +37,7 @@
 
         <fmt-maven-plugin.version>2.24</fmt-maven-plugin.version>
         <hibernate-core.version>6.4.4.Final</hibernate-core.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <junit-jupiter-engine.version>5.10.2</junit-jupiter-engine.version>
         <junit-jupiter-params.version>5.10.2</junit-jupiter-params.version>
         <log4j-slf4j2-impl.version>2.23.0</log4j-slf4j2-impl.version>
@@ -149,7 +150,7 @@
                 <version>${maven-surefire-plugin.version}</version>
                 <configuration>
                     <groups>${testGroups}</groups>
-                    <argLine>--add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
+                    <argLine>${argLine} --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -158,7 +159,7 @@
                 <version>${maven-failsafe-plugin.version}</version>
                 <configuration>
                     <groups>${testGroups}</groups>
-                    <argLine>--add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
+                    <argLine>${argLine} --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED --add-exports=java.base/sun.nio.ch=ALL-UNNAMED --add-exports=jdk.unsupported/sun.misc=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
             <plugin>
@@ -220,6 +221,33 @@
                         <arg>-Xlint:deprecation</arg>
                     </compilerArgs>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>${jacoco-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>pre-test</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                        <configuration>
+                            <destFile>target/jacoco-tests.exec</destFile>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>post-test</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <phase>test</phase>
+                        <configuration>
+                            <dataFile>target/jacoco-tests.exec</dataFile>
+                            <outputDirectory>target/jacoco-tests</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
