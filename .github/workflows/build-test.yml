@@ -72,6 +72,10 @@ jobs:
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
         run: ci\\test_windows.bat
+      - uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   test-mac:
     needs: build
@@ -111,6 +115,10 @@ jobs:
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
         run: bash ./ci/test.sh
+      - uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   test-linux:
     needs: build
@@ -147,3 +155,7 @@ jobs:
           CLOUD_PROVIDER: ${{ matrix.runConfig.cloud }}
           TEST_GROUPS: ${{ matrix.runConfig.testGroups }}
         run: ./ci/test.sh
+      - uses: codecov/codecov-action@v4
+        with:
+          fail_ci_if_error: true
+          token: ${{ secrets.CODECOV_TOKEN }}
