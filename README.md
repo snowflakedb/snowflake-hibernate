@@ -1,8 +1,7 @@
 # Snowflake Dialect provider for Hibernate
 
-[<img src="https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml/badge.svg?branch=main">](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml?query=branch%3Amain)
-[<img src="http://img.shields.io/:license-Apache--2.0-brightgreen.svg">](http://www.apache.org/licenses/LICENSE-2.0.txt)
-
+[![build-and-test](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml/badge.svg?branch=main)](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml?query=branch%3Amain)
+[![license](http://img.shields.io/:license-Apache--2.0-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 [![codecov](https://codecov.io/gh/snowflakedb/snowflake-hibernate/graph/badge.svg?token=J8TOYZ6SZK)](https://codecov.io/gh/snowflakedb/snowflake-hibernate)
 
 ## Brief
