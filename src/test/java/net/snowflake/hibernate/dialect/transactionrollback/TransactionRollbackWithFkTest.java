@@ -42,7 +42,7 @@ public class TransactionRollbackWithFkTest extends DroppingTablesBaseTest {
     EntityWithManuallySetFk parent1 =
         new EntityWithManuallySetFk(UUID.randomUUID().toString(), "parent 1", null);
     EntityWithManuallySetFk parent2 =
-        new EntityWithManuallySetFk(UUID.randomUUID().toString(), "parent 1", null);
+        new EntityWithManuallySetFk(UUID.randomUUID().toString(), "parent 2", null);
     EntityWithManuallySetFkChild child =
         new EntityWithManuallySetFkChild(UUID.randomUUID().toString(), "test1", parent1);
     parent1.child = child;

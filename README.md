@@ -1,5 +1,7 @@
-# snowflake-hibernate
+# Snowflake Dialect provider for Hibernate
 
+[![build-and-test](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml/badge.svg?branch=main)](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml?query=branch%3Amain)
+[![license](http://img.shields.io/:license-Apache--2.0-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 [![codecov](https://codecov.io/gh/snowflakedb/snowflake-hibernate/graph/badge.svg?token=J8TOYZ6SZK)](https://codecov.io/gh/snowflakedb/snowflake-hibernate)
 
 ## Brief
@@ -20,7 +22,7 @@ Ensure to add in your project necessary minimal dependencies:
   * Snowflake JDBC Driver 3.13.31+
 
 ### Features
-  
+
 | *Feature*           | *snowflake-hibernate Dialect Switch*                        | *Values*        | *Default* |           
 |---------------------|-------------------------------------------------------------|-----------------|-----------|
 | JDBC Driver Version | hibernate.dialect.snowflake.allow_unrecommended_jdbc_driver | false/true      | false     | 
@@ -140,7 +142,7 @@ Run performance tests:
 3. Build snowflake-hibernate `./mvnw clean package`
 4. Install snowflake-hibernate in private maven repo
    ```
-   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./snowflake-hibernate/target/snowflake-hibernate-*-SNAPSHOT.jar -DpomFile=./snowflake-hibernate-pom.xml
+   ./mvnw org.apache.maven.plugins:maven-install-plugin:3.1.1:install-file -Dfile=./target/snowflake-hibernate.jar -DpomFile=./pom.xml
    ```
    
 #### Spring Boot samples
@@ -154,7 +156,3 @@ Run performance tests:
 1. Go to [sample/springboot-flyway](sample/springboot-flyway) `cd ./sample/springboot-flyway`
 2. Set java version to 17 (e.g. using sdkman)
 3. Run tests: `../../mvnw clean test`
-
-## Prepare distribution for PrPr
-
-Run `./buildPrPrArtifact.sh`
