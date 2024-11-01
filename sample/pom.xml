@@ -14,7 +14,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <properties>
         <java.version>17</java.version>
-        <snowflake-jdbc.version>3.15.1</snowflake-jdbc.version>
+        <snowflake-jdbc.version>3.20.0</snowflake-jdbc.version>
         <snowflake-hibernate.version>0.0.2</snowflake-hibernate.version>
         <hibernate.version>6.4.4.Final</hibernate.version>
         <slf4j-api.version>2.0.13</slf4j-api.version>
