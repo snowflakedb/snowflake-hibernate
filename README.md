@@ -1,5 +1,30 @@
 # Snowflake Dialect provider for Hibernate
 
+The Snowflake Developer Platform team has made the decision to conclude the Private Preview (PrPr) programs for both the Entity Framework (a .NET-based ORM) and Hibernate (a Java-based ORM). These ORMs will also not be moving forward to Public Preview (PuPr) or General Availability (GA). However, they will be made available in Snowflake-Labs so that customers can utilize the work we’ve done up until this point.
+
+Reasoning
+While this decision was not made lightly, the team believes it is in the best interest of Snowflake to focus on strengthening and enhancing its core capabilities.
+
+Immediate Actions
+Effective immediately, active development of the Entity Framework and Hibernate ORMs has ceased. Additionally, any development work on other requested ORMs has been paused indefinitely.
+
+Future Plans
+While active development has stopped, the work that has been completed will not be lost. On May 5, 2025, repositories for both the Entity Framework and Hibernate ORMs will be made available on Snowflake-Labs. However, these repositories will be in maintenance mode only.
+
+Key Points About Snowflake-Labs Repositories
+The feature set for both ORMs will be limited to the functionality that was validated during the PrPr phase.
+These ORMs will no longer be actively developed.
+Critical security issues will be patched if they are reported or detected.
+Official Snowflake Support will not be provided.
+Detailed documentation will be available within the repositories.
+The repositories will not be actively monitored.
+If you have any questions, please contact your Snowflake Account Team (Sales rep.)
+
+Thank you,
+The Snowflake Developer Platform
+
+
+
 [![build-and-test](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml/badge.svg?branch=main)](https://github.com/snowflakedb/snowflake-hibernate/actions/workflows/build-test.yml?query=branch%3Amain)
 [![license](http://img.shields.io/:license-Apache--2.0-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.txt)
 [![codecov](https://codecov.io/gh/snowflakedb/snowflake-hibernate/graph/badge.svg?token=J8TOYZ6SZK)](https://codecov.io/gh/snowflakedb/snowflake-hibernate)
